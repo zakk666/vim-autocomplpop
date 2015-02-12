@@ -212,7 +212,7 @@ function acp#onPopupPost()
   " to clear <C-r>= expression on command-line
   echo ''
   if pumvisible() && exists('s:behavsCurrent[s:iBehavs]')
-    inoremap <silent> <expr> <C-h> acp#onBs()
+    "inoremap <silent> <expr> <C-h> acp#onBs()
     inoremap <silent> <expr> <BS>  acp#onBs()
     if exists('g:AutoComplPopDontSelectFirst') ? g:AutoComplPopDontSelectFirst : 0
       return (s:behavsCurrent[s:iBehavs].command =~# "\<C-p>" ? "\<C-n>"
@@ -263,7 +263,16 @@ function s:mapForMappingDriven()
         \ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
         \ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
         \ '-', '_', '~', '^', '.', ',', ':', '!', '#', '=', '%', '$', '@', '<', '>', '/', '\',
-        \ '<Space>', '<C-h>', '<BS>', ]
+        \ '<Space>', '<BS>', ]
+
+  "let s:keysMappingDriven = [
+        "\ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        "\ 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        "\ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        "\ 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        "\ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+        "\ '-', '_', '~', '^', '.', ',', ':', '!', '#', '=', '%', '$', '@', '<', '>', '/', '\',
+        "\ '<Space>', '<C-h>', '<BS>', ]
   for key in s:keysMappingDriven
     execute printf('inoremap <silent> %s %s<C-r>=<SID>feedPopup()<CR>',
           \        key, key)
@@ -392,7 +401,7 @@ endfunction
 
 "
 function s:finishPopup(fGroup1)
-  inoremap <C-h> <Nop> | iunmap <C-h>
+  "inoremap <C-h> <Nop> | iunmap <C-h>
   inoremap <BS>  <Nop> | iunmap <BS>
   let s:behavsCurrent = []
   call l9#tempvariables#end(s:TEMP_VARIABLES_GROUP0)
